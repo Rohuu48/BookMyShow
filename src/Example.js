@@ -41,12 +41,12 @@ export default class Example extends React.Component {
                 </NavItem>
                 <NavItem>
                   <NavLink>
-                    <Link to="/comedy">Comedy</Link>
+                    <Link to="/Comedy">Comedy</Link>
                   </NavLink>
                 </NavItem>
                 <NavItem>
                   <NavLink>
-                    <Link to="/documentaries">Documentaries</Link>
+                    <Link to="/Documentaries">Documentaries</Link>
                   </NavLink>
                 </NavItem>
                 <NavItem>

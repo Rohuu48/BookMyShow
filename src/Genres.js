@@ -22,8 +22,12 @@ const mapDispatchToProps = dispatch => {
 
 class Genres extends React.Component {
   componentDidMount() {
-    const db = firebase.firestore();
-    this.props.route(this.props.match.params.id);
+    this.props.route(`${this.props.match.params.id}`);
+    setTimeout(() => {
+      console.log(this.props.movies);
+    }, 5000);
+
+    console.log(this.props.movies);
   }
   render() {
     return (
