@@ -36,21 +36,6 @@ class Example extends React.Component {
             <Collapse isOpen={this.state.isOpen} navbar>
               <Nav className="ml-auto" navbar>
                 <NavItem>
-                  <NavLink>
-                    <Link to="/thriller">Thriller</Link>
-                  </NavLink>
-                </NavItem>
-                <NavItem>
-                  <NavLink>
-                    <Link to="/Comedy">Comedy</Link>
-                  </NavLink>
-                </NavItem>
-                <NavItem>
-                  <NavLink>
-                    <Link to="/Documentaries">Documentaries</Link>
-                  </NavLink>
-                </NavItem>
-                <NavItem>
                   <NavLink href="https://github.com/Rohuu48?tab=repositories">
                     GitHub
                   </NavLink>

@@ -8,7 +8,7 @@ const getList = movie =>
       .get()
       .then(query => {
         query.forEach(docu => {
-          list = list.concat(docu.data());
+          list = list.concat(docu);
         });
         if (list.length > 0) {
           resolve(list);
@@ -20,5 +20,38 @@ const getList = movie =>
 export const route = movie => {
   return dispatch => {
     getList(movie).then(item => dispatch({ type: "ROUTE", payload: item }));
+  };
+};
+
+export const like = (genre, id, likes) => {
+  return dispatch => {
+    const db = firebase.firestore();
+
+    db.collection(`${genre}`)
+      .doc(`${id}`)
+      .set({ Likes: Number(likes + 1) }, { merge: true })
+      .then(doc => dispatch({ type: "LIKE" }));
+  };
+};
+
+export const dislike = (genre, id, likes) => {
+  return dispatch => {
+    const db = firebase.firestore();
+
+    db.collection(`${genre}`)
+      .doc(`${id}`)
+      .set({ Likes: Number(likes - 1) }, { merge: true })
+      .then(() => dispatch({ type: "DISLIKE" }));
+  };
+};
+
+export const bookTickets = (genre, movieid, tickets) => {
+  return dispatch => {
+    const db = firebase.firestore();
+
+    db.collection(`${genre}`)
+      .doc(`${movieid}`)
+      .set({ Tickets: Number(tickets - 1) }, { merge: true })
+      .then(() => dispatch({ type: "BOOKTICKETS" }));
   };
 };

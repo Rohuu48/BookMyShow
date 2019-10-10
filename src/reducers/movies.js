@@ -8,6 +8,7 @@ const moviesReducer = (state = initialState, action) => {
         ...state,
         movies: action.payload
       };
+
     default:
       return state;
   }
