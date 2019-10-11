@@ -2,7 +2,7 @@ import React from "react";
 import firebase from "./firebase";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { route, like, bookTickets, dislike } from "./action/action";
+import { route, like, bookTickets, dislike, bookings } from "./action/action";
 import Example from "./Example";
 import ShowMovies from "./ShowMovies";
 import Example2 from "./Example2";

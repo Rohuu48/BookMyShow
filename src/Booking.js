@@ -30,7 +30,8 @@ class Booking extends React.Component {
       address: "",
       data: "",
       dataem: "",
-      dataph: ""
+      dataph: "",
+      redirect: false
     };
   }
   componentDidMount() {
@@ -90,12 +91,13 @@ class Booking extends React.Component {
         name: "",
         email: "",
         gender: "",
-
+        redirect: true,
         phno: "",
         dob: "",
         address: ""
       });
-      return <Redirect to="/thriller" />;
+      alert("Ticket Booked");
+      this.props.history.push("/");
     } else {
       this.call();
     }

@@ -55,3 +55,20 @@ export const bookTickets = (genre, movieid, tickets) => {
       .then(() => dispatch({ type: "BOOKTICKETS" }));
   };
 };
+
+export const bookings = movieid => {
+  return dispatch => {
+    const db = firebase.firestore();
+    var list = [];
+    db.collection("User")
+      .get()
+      .then(query => {
+        query.forEach(doc => {
+          if (doc.data().ID === movieid) {
+            list = list.concat(doc.data());
+          }
+        });
+        dispatch({ type: "BOOKED", payload: list });
+      });
+  };
+};

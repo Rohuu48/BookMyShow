@@ -17,6 +17,9 @@ import Typography from "@material-ui/core/Typography";
 import { red } from "@material-ui/core/colors";
 import Grid from "@material-ui/core/Grid";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
+import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
+import { bookings } from "./action/action";
 
 const useStyles = makeStyles(theme => ({
   button: {
@@ -57,7 +60,11 @@ class ShowMovies extends React.Component {
 
     this.state = {
       date: date,
-      loading: true
+      loading: true,
+      abc:
+        this.props.match.params.id.charAt(0).toUpperCase() +
+        this.props.match.params.id.substr(1).toLowerCase(),
+      genre: this.props.match.params.id.charAt(0).toUpperCase()
     };
   }
   componentDidMount() {
@@ -78,7 +85,7 @@ class ShowMovies extends React.Component {
           <CardHeader
             avatar={
               <Avatar aria-label="recipe" className={useStyles.avatar}>
-                M
+                {this.state.genre}
               </Avatar>
             }
             action={
@@ -86,7 +93,7 @@ class ShowMovies extends React.Component {
                 <MoreVertIcon />
               </IconButton>
             }
-            title="Movies"
+            title={this.state.abc}
             subheader={this.state.date}
           />
         </Card>

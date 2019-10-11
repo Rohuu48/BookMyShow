@@ -1,5 +1,6 @@
 const initialState = {
-  movies: []
+  movies: [],
+  users: []
 };
 const moviesReducer = (state = initialState, action) => {
   switch (action.type) {

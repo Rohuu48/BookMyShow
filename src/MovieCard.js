@@ -1,8 +1,10 @@
 import React from "react";
 import { Route } from "react-router-dom";
 import { Link } from "react-router-dom";
+
 import { makeStyles } from "@material-ui/core/styles";
 import clsx from "clsx";
+
 import Card from "@material-ui/core/Card";
 import CardHeader from "@material-ui/core/CardHeader";
 import CardMedia from "@material-ui/core/CardMedia";
@@ -20,6 +22,7 @@ import ShareIcon from "@material-ui/icons/Share";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
 import { withRouter } from "react-router-dom";
+import AllBookers from "./AllBookers";
 
 const useStyles = makeStyles(theme => ({
   button: {
@@ -54,16 +57,27 @@ const useStyles = makeStyles(theme => ({
 class MovieCards extends React.Component {
   state = {
     likes: this.props.data.Likes,
-    click: false
+    click: false,
+    bookers: false
   };
   componentDidMount() {
     console.log(
       this.props.match.url,
-      "hggj",
+      // this.props.users,
       this.props.id,
       this.props.data.Likes
     );
   }
+  allbookings = () => {
+    // this.props.bookings(this.props.id);
+
+    setTimeout(() => {
+      // console.log(this.props.users, this.props.data);
+    }, 5000);
+    console.log(this.props.users);
+
+    this.props.history.push(`${this.props.match.url}/${this.props.id}`);
+  };
   userbooking = tickets => {
     this.props.history.push(
       `${this.props.match.url}/${this.props.id}/${this.props.data.Tickets}`
@@ -82,7 +96,7 @@ class MovieCards extends React.Component {
     });
   };
   render() {
-    if (!this.state.click) {
+    if (!this.state.click && !this.state.bookers) {
       return (
         <Card style={{ maxWidth: "400px" }}>
           <img
@@ -111,7 +125,7 @@ class MovieCards extends React.Component {
                   )
                 }
               >
-                <FavoriteIcon className={useStyles.color} onClick={this.add} />
+                <FavoriteIcon onClick={this.add} />
                 <h5>{this.props.data.Likes}</h5>
               </IconButton>
               <Button
@@ -125,10 +139,23 @@ class MovieCards extends React.Component {
               </Button>
               Tickets Left:{this.props.data.Tickets}
             </CardActions>
+            <CardContent>
+              <Link
+                to={{
+                  state: {
+                    user: this.props.users
+                  }
+                }}
+                onClick={this.allbookings}
+              >
+                Tickets Sold
+              </Link>
+            </CardContent>
           </CardContent>
         </Card>
       );
-    } else {
+    }
+    if (this.state.click && !this.state.bookers) {
       return (
         <Card style={{ maxWidth: "400px" }}>
           <img
@@ -156,10 +183,7 @@ class MovieCards extends React.Component {
                   )
                 }
               >
-                <FavoriteIcon
-                  className={useStyles.color}
-                  onClick={this.dislike}
-                />
+                <FavoriteIcon style={{ fill: "red" }} onClick={this.dislike} />
                 <h5>{this.state.likes}</h5>
               </IconButton>
               <Button
@@ -173,6 +197,18 @@ class MovieCards extends React.Component {
               </Button>
               Tickets Left:{this.props.data.Tickets}
             </CardActions>
+            <CardContent>
+              <Link
+                to={{
+                  state: {
+                    user: this.props.users
+                  }
+                }}
+                onClick={this.allbookings}
+              >
+                Tickets Sold
+              </Link>
+            </CardContent>
           </CardContent>
         </Card>
       );

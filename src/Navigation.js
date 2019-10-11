@@ -3,6 +3,7 @@ import { Route, Switch, BrowserRouter } from "react-router-dom";
 import Booking from "./Booking";
 import UI from "./UI";
 import Genres from "./Genres";
+import AllBookers from "./AllBookers";
 class Navigation extends React.Component {
   render() {
     return (
@@ -11,6 +12,7 @@ class Navigation extends React.Component {
           <Switch>
             <Route path="/" exact component={UI} />
             <Route path="/:id" exact component={Genres} />
+            <Route path="/:id1/:id2" exact component={AllBookers} />
             <Route path="/:id1/:id2/:id3" exact component={Booking} />
           </Switch>
         </BrowserRouter>
